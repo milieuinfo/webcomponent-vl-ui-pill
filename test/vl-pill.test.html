@@ -34,6 +34,36 @@
       pill.setAttribute('type',val);
       assert.isFalse(pill.shadowRoot.querySelector(".vl-pill").classList.contains("vl-pill--"+val));
     });
+
+    //closable
+    test('bevat sluit-knopje', () => {
+      const pill = fixture('vl-pill-fixture');
+      var closeBtn;
+
+      closeBtn = pill.shadowRoot.querySelector("button");
+      assert.isTrue(closeBtn == null);
+
+      pill.setAttribute('closable','');
+      closeBtn = pill.shadowRoot.querySelector("button");
+      assert.isTrue(closeBtn != null);
+      assert.isTrue(closeBtn.classList.contains("vl-pill__close"));
+
+      pill.removeAttribute('closable');
+      closeBtn = pill.shadowRoot.querySelector("button");
+      assert.isTrue(closeBtn == null);
+    });
+
+    //pill closes
+    test('sluit wanneer op sluit-knopje wordt geklikt', () => {
+      const pill = fixture('vl-pill-fixture');
+      pill.setAttribute('closable','');
+
+      const closeBtn = pill.shadowRoot.querySelector("button");
+
+      assert.isTrue(document.body.contains(pill));
+      closeBtn.click();
+      assert.isFalse(document.body.contains(pill));
+    });
   });
 </script>
 </body>

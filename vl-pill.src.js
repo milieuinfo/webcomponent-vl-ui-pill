@@ -22,11 +22,26 @@ export class VlPill extends VlElement(HTMLElement) {
   }
 
   static get _observedAttributes() {
-    return ['type'];
+    return ['type', 'closable'];
   }
 
   get _classPrefix() {
     return 'vl-pill--';
+  }
+
+  get _closeButtonElement() {
+    return this._element.querySelector('.vl-pill__close');
+  }
+
+  _getClosablePillTemplate() {
+    return this._template(`
+            <div class="vl-pill vl-pill--closable">
+                <slot></slot>
+              <button class="vl-pill__close" type="button">
+                <span class="vl-u-visually-hidden">Verwijderen</span>
+              </button>
+            </div>
+        `);
   }
 
   _typeChangedCallback(oldValue, newValue) {
@@ -34,6 +49,18 @@ export class VlPill extends VlElement(HTMLElement) {
       this._changeClass(this._element, oldValue, newValue);
     } else {
       this._element.classList.remove(this._classPrefix + oldValue);
+    }
+  }
+
+  _closableChangedCallback(oldValue, newValue) {
+    if (this._closeButtonElement) {
+      this._element;
+    }
+
+    if (newValue != undefined) {
+      const closablePillTemplate = this._getClosablePillTemplate();
+      closablePillTemplate.querySelector('button').addEventListener('click', () => this.remove());
+      this.__shadow(closablePillTemplate);
     }
   }
 }
