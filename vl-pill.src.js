@@ -1,4 +1,24 @@
-import { VlElement, define } from '/node_modules/vl-ui-core/vl-core.js';
+import { VlElement, NativeVlElement, define } from '/node_modules/vl-ui-core/vl-core.js';
+
+export const VlPillElement = (SuperClass) => {
+  return class extends VlElement(SuperClass) {
+    static get _observedAttributes() {
+      return ['type'];
+    }
+  
+    get _classPrefix() {
+      return 'vl-pill--';
+    }
+  
+    _typeChangedCallback(oldValue, newValue) {
+      if (["success", "warning", "error"].indexOf(newValue) >= 0) {
+        this._changeClass(this._element, oldValue, newValue);
+      } else {
+        this._element.classList.remove(this._classPrefix + oldValue);
+      }
+    }
+  }
+}
 
 /**
  * VlPill
@@ -9,7 +29,7 @@ import { VlElement, define } from '/node_modules/vl-ui-core/vl-core.js';
  *
  * @property {(success | warning | error)} type - Attribuut bepaalt de soort van pill: succes, probleem of fout.
  */
-export class VlPill extends VlElement(HTMLElement) {
+export class VlPill extends VlPillElement(VlElement(HTMLElement)) {
   static get pillTemplate() {
     return `
       <span class="vl-pill">
@@ -28,11 +48,7 @@ export class VlPill extends VlElement(HTMLElement) {
   }
 
   static get _observedAttributes() {
-    return ['type', 'closable'];
-  }
-
-  get _classPrefix() {
-    return 'vl-pill--';
+    return super._observedAttributes.concat(['closable']);
   }
 
   _getPillTemplate() {
@@ -50,17 +66,22 @@ export class VlPill extends VlElement(HTMLElement) {
     `);
   }
 
-  _typeChangedCallback(oldValue, newValue) {
-    if (["success", "warning", "error"].indexOf(newValue) >= 0) {
-      this._changeClass(this._element, oldValue, newValue);
-    } else {
-      this._element.classList.remove(this._classPrefix + oldValue);
-    }
-  }
-
   _closableChangedCallback(oldValue, newValue) {
     this._shadow.lastElementChild.replaceWith((newValue != undefined ? this._getClosablePillTemplate() : this._getPillTemplate()));
   }
 }
 
+export class VlButtonPill extends VlPillElement(NativeVlElement(HTMLButtonElement)) {
+  constructor() {
+    super();
+    this.classList.add('vl-pill');
+    this.classList.add('vl-pill--clickable');
+  }
+  
+  get _stylePath() {
+      return '../style.css';
+  }
+}
+
 define('vl-pill', VlPill);
+define('vl-button-pill', VlButtonPill, {extends: 'button'});
