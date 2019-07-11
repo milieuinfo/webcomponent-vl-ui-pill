@@ -1,10 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+  <meta charset="utf-8">
+  <script src="../../@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+
+  <script type="module" src="../vl-pill.src.js"></script>
 </head>
 <body>
+<test-fixture id="vl-pill-fixture">
+  <template>
+    <vl-pill></vl-pill>
+  </template>
+</test-fixture>
 
+<script>
+  suite('<vl-pill>', () => {
+    const should = chai.should();
+
+    test('bevat shadow element met juiste type class', () => {
+
+      const pill = fixture('vl-pill-fixture');
+      const vals = ["success","warning","error"];
+
+      // valid values
+      for (let val of vals){
+        pill.setAttribute('type',val);
+        assert.isTrue(pill.shadowRoot.querySelector(".vl-pill").classList.contains("vl-pill--"+val));
+      }
+
+      // invalid value
+      let val = "blabla";
+      pill.setAttribute('type',val);
+      assert.isFalse(pill.shadowRoot.querySelector(".vl-pill").classList.contains("vl-pill--"+val));
+    });
+  });
+</script>
 </body>
 </html>
