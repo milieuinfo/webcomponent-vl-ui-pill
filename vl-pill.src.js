@@ -10,15 +10,21 @@ import { VlElement, define } from '/node_modules/vl-ui-core/vl-core.js';
  * @property {(success | warning | error)} type - Attribuut bepaalt de soort van pill: succes, probleem of fout.
  */
 export class VlPill extends VlElement(HTMLElement) {
+  static get pillTemplate() {
+    return `
+      <span class="vl-pill">
+        <slot></slot>
+      </span>
+    `;
+  }
+
   constructor() {
     super(`
-            <style>
-                @import "../style.css";
-            </style>
-            <span class="vl-pill">
-                <slot></slot>
-            </span>
-        `);
+      <style>
+          @import "../style.css";
+      </style>
+      ${VlPill.pillTemplate}
+    `);
   }
 
   static get _observedAttributes() {
@@ -29,19 +35,19 @@ export class VlPill extends VlElement(HTMLElement) {
     return 'vl-pill--';
   }
 
-  get _closeButtonElement() {
-    return this._element.querySelector('.vl-pill__close');
+  _getPillTemplate() {
+    return this._template(VlPill.pillTemplate);
   }
 
   _getClosablePillTemplate() {
     return this._template(`
-            <div class="vl-pill vl-pill--closable">
-                <slot></slot>
-              <button class="vl-pill__close" type="button">
-                <span class="vl-u-visually-hidden">Verwijderen</span>
-              </button>
-            </div>
-        `);
+      <div class="vl-pill vl-pill--closable">
+          <slot></slot>
+        <button class="vl-pill__close" type="button">
+          <span class="vl-u-visually-hidden">Verwijderen</span>
+        </button>
+      </div>
+    `);
   }
 
   _typeChangedCallback(oldValue, newValue) {
@@ -53,15 +59,7 @@ export class VlPill extends VlElement(HTMLElement) {
   }
 
   _closableChangedCallback(oldValue, newValue) {
-    if (this._closeButtonElement) {
-      this._element;
-    }
-
-    if (newValue != undefined) {
-      const closablePillTemplate = this._getClosablePillTemplate();
-      closablePillTemplate.querySelector('button').addEventListener('click', () => this.remove());
-      this.__shadow(closablePillTemplate);
-    }
+    this._shadow.lastElementChild.replaceWith((newValue != undefined ? this._getClosablePillTemplate() : this._getPillTemplate()));
   }
 }
 
