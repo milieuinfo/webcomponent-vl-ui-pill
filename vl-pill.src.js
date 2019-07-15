@@ -71,18 +71,6 @@ export class VlPill extends VlPillElement(HTMLElement) {
   }
 }
 
-export class VlButtonPill extends VlPillElement(NativeVlElement(HTMLButtonElement)) {
-  constructor() {
-    super();
-    this.classList.add('vl-pill');
-    this.classList.add('vl-pill--clickable');
-  }
-  
-  get _stylePath() {
-      return '../style.css';
-  }
-}
-
 export class VlLabelPill extends VlPillElement(NativeVlElement(HTMLLabelElement)) {
   constructor() {
     super();
@@ -109,5 +97,4 @@ export class VlLabelPill extends VlPillElement(NativeVlElement(HTMLLabelElement)
 }
 
 define('vl-pill', VlPill);
-define('vl-button-pill', VlButtonPill, {extends: 'button'});
 define('vl-label-pill', VlLabelPill, {extends: 'label'});
