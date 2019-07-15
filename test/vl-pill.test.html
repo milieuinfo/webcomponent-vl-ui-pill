@@ -13,21 +13,35 @@
     <vl-pill></vl-pill>
   </template>
 </test-fixture>
+<test-fixture id="vl-button-pill-fixture">
+  <template>
+    <button is="vl-button-pill"></button>
+  </template>
+</test-fixture>
+<test-fixture id="vl-label-pill-fixture">
+  <template>
+    <label is="vl-label-pill">
+      <input type="checkbox">
+    </label>
+  </template>
+</test-fixture>
 
 <script>
   suite('<vl-pill>', () => {
     const should = chai.should();
 
+    //normal pill
     test('bevat shadow element met juiste type class', () => {
-
       const pill = fixture('vl-pill-fixture');
-      const vals = ["success","warning","error"];
 
       // valid values
-      for (let val of vals){
+      ["success","warning","error"].forEach((val) => {
+        assert.isFalse(pill.shadowRoot.querySelector(".vl-pill").classList.contains("vl-pill--"+val));
         pill.setAttribute('type',val);
         assert.isTrue(pill.shadowRoot.querySelector(".vl-pill").classList.contains("vl-pill--"+val));
-      }
+        pill.removeAttribute('type');
+        assert.isFalse(pill.shadowRoot.querySelector(".vl-pill").classList.contains("vl-pill--"+val));
+      });
 
       // invalid value
       let val = "blabla";
@@ -35,7 +49,7 @@
       assert.isFalse(pill.shadowRoot.querySelector(".vl-pill").classList.contains("vl-pill--"+val));
     });
 
-    //closable
+    //closable pill
     test('bevat sluit-knopje', () => {
       const pill = fixture('vl-pill-fixture');
       var closeBtn;
@@ -51,6 +65,46 @@
       pill.removeAttribute('closable');
       closeBtn = pill.shadowRoot.querySelector("button");
       assert.isTrue(closeBtn == null);
+    });
+
+    //clickable pill
+    test('clickable bevat juiste type class', () => {
+      const clickablePill = fixture('vl-button-pill-fixture');
+      assert.isTrue(clickablePill.classList.contains('vl-pill--clickable'));
+
+      // valid values
+      ["success","warning","error"].forEach((val) => {
+        assert.isFalse(clickablePill.classList.contains("vl-pill--"+val));
+        clickablePill.setAttribute('type',val);
+        assert.isTrue(clickablePill.classList.contains("vl-pill--"+val));
+        clickablePill.removeAttribute('type');
+        assert.isFalse(clickablePill.classList.contains("vl-pill--"+val));
+      });
+
+      // invalid value
+      let val = "blabla";
+      clickablePill.setAttribute('type',val);
+      assert.isFalse(clickablePill.classList.contains("vl-pill--"+val));
+    });
+
+    //checkable pill
+    test('checkable bevat juiste type class', () => {
+      const checkablePill = fixture('vl-label-pill-fixture');
+      assert.isTrue(checkablePill.classList.contains('vl-pill--checkable'));
+
+      // valid values
+      ["success","warning","error"].forEach((val) => {
+        assert.isFalse(checkablePill.classList.contains("vl-pill--"+val));
+        checkablePill.setAttribute('type',val);
+        assert.isTrue(checkablePill.classList.contains("vl-pill--"+val));
+        checkablePill.removeAttribute('type');
+        assert.isFalse(checkablePill.classList.contains("vl-pill--"+val));
+      });
+
+      // invalid value
+      let val = "blabla";
+      checkablePill.setAttribute('type',val);
+      assert.isFalse(checkablePill.classList.contains("vl-pill--"+val));
     });
   })
 </script>
