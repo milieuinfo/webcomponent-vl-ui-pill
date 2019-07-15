@@ -88,7 +88,8 @@ export class VlLabelPill extends VlPillElement(NativeVlElement(HTMLLabelElement)
     super();
     this.classList.add('vl-pill');
     this.classList.add('vl-pill--checkable');
-    //this._inputElement.classList.add("vl-pill--checkable__checkbox");
+    this._inputElement.classList.add("vl-pill--checkable__checkbox");
+    this._inputElement.insertAdjacentHTML('afterend', this._inputStyleElement);
   }
 
   get _stylePath() {
@@ -97,6 +98,12 @@ export class VlLabelPill extends VlPillElement(NativeVlElement(HTMLLabelElement)
 
   get _inputElement() {
     return this._element.querySelector('input');
+  }
+
+  get _inputStyleElement() {
+    return `
+      <span></span>
+    `;
   }
 }
 
