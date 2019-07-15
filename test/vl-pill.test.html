@@ -52,19 +52,7 @@
       closeBtn = pill.shadowRoot.querySelector("button");
       assert.isTrue(closeBtn == null);
     });
-
-    //pill closes
-    test('sluit wanneer op sluit-knopje wordt geklikt', () => {
-      const pill = fixture('vl-pill-fixture');
-      pill.setAttribute('closable','');
-
-      const closeBtn = pill.shadowRoot.querySelector("button");
-
-      assert.isTrue(document.body.contains(pill));
-      closeBtn.click();
-      assert.isFalse(document.body.contains(pill));
-    });
-  });
+  })
 </script>
 </body>
 </html>

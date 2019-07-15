@@ -18,7 +18,7 @@ export const VlPillElement = (SuperClass) => {
       }
     }
   }
-}
+};
 
 /**
  * VlPill
@@ -29,7 +29,7 @@ export const VlPillElement = (SuperClass) => {
  *
  * @property {(success | warning | error)} type - Attribuut bepaalt de soort van pill: succes, probleem of fout.
  */
-export class VlPill extends VlPillElement(VlElement(HTMLElement)) {
+export class VlPill extends VlPillElement(HTMLElement) {
   static get pillTemplate() {
     return `
       <span class="vl-pill">
@@ -83,5 +83,23 @@ export class VlButtonPill extends VlPillElement(NativeVlElement(HTMLButtonElemen
   }
 }
 
+export class VlLabelPill extends VlPillElement(NativeVlElement(HTMLLabelElement)) {
+  constructor() {
+    super();
+    this.classList.add('vl-pill');
+    this.classList.add('vl-pill--checkable');
+    //this._inputElement.classList.add("vl-pill--checkable__checkbox");
+  }
+
+  get _stylePath() {
+    return '../style.css';
+  }
+
+  get _inputElement() {
+    return this._element.querySelector('input');
+  }
+}
+
 define('vl-pill', VlPill);
 define('vl-button-pill', VlButtonPill, {extends: 'button'});
+define('vl-label-pill', VlLabelPill, {extends: 'label'});
