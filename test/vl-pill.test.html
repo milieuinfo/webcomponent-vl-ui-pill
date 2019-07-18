@@ -48,24 +48,21 @@
     //closable pill
     test('bevat sluit-knopje', () => {
       const pill = fixture('vl-pill-fixture');
-      var closeBtn;
 
-      closeBtn = pill.shadowRoot.querySelector("button");
-      assert.isTrue(closeBtn == null);
-
+      should.not.exist(pill.shadowRoot.querySelector("button"));
       pill.setAttribute('closable','');
-      closeBtn = pill.shadowRoot.querySelector("button");
-      assert.isTrue(closeBtn != null);
-      assert.isTrue(closeBtn.classList.contains("vl-pill__close"));
+      const button = pill.shadowRoot.querySelector("button");
+      should.exist(button);
+      assert.isTrue(button.classList.contains("vl-pill__close"));
 
       pill.removeAttribute('closable');
-      closeBtn = pill.shadowRoot.querySelector("button");
-      assert.isTrue(closeBtn == null);
+      should.not.exist(pill.shadowRoot.querySelector("button"));
     });
 
     //checkable pill
     test('checkable bevat juiste type class', () => {
       const checkablePill = fixture('vl-label-pill-fixture');
+      assert.isTrue(checkablePill.classList.contains('vl-pill'));
       assert.isTrue(checkablePill.classList.contains('vl-pill--checkable'));
 
       // valid values
