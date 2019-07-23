@@ -74,12 +74,11 @@ export class VlPill extends VlPillElement(HTMLElement) {
 export class VlLabelPill extends VlPillElement(NativeVlElement(HTMLLabelElement)) {
   constructor() {
     super();
-    this.classList.add('vl-pill');
-    this.classList.add('vl-pill--checkable');
   }
 
   connectedCallback() {
-    const input = this._inputElement;
+    this.classList.add('vl-pill');
+    this.classList.add('vl-pill--checkable');   const input = this._inputElement;
     input.classList.add("vl-pill--checkable__checkbox");
     input.insertAdjacentHTML('afterend', this._inputStyleElement);
   }
