@@ -44,6 +44,7 @@
     "wct-browser-legacy": "1.0.2",
     "web-component-tester": "6.9.2"
   },
+  "publishConfig": {
     "registry": "https://repository.milieuinfo.be/artifactory/api/npm/acd-npm/"
   }
 }
