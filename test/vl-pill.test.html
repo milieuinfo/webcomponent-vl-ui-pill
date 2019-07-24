@@ -79,6 +79,19 @@
       checkablePill.setAttribute('type',val);
       assert.isFalse(checkablePill.classList.contains("vl-pill--"+val));
     });
+
+    test('checkable bevat input element van het type checkbox met juiste classes', () => {
+      const checkablePill = fixture('vl-label-pill-fixture');
+      let inputElement = checkablePill._inputElement;
+      should.exist(inputElement);
+      assert.isTrue(inputElement.getAttribute('type') == 'checkbox')
+      assert.isTrue(inputElement.classList.contains('vl-pill--checkable__checkbox'))
+    });
+
+    test('checkable bevat een span element', () => {
+      const checkablePill = fixture('vl-label-pill-fixture');
+      should.exist(checkablePill.querySelector('span'));
+    });
   })
 </script>
 </body>
