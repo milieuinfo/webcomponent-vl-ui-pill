@@ -88,12 +88,9 @@
       assert.isTrue(inputElement.classList.contains('vl-pill--checkable__checkbox'))
     });
 
-    test('checkable bevat een span element', (done) => {
+    test('checkable bevat een span element', () => {
       const checkablePill = fixture('vl-label-pill-fixture');
-      flush(function() {
-        should.exist(checkablePill.querySelector('span'));
-        done();
-      });
+      should.exist(checkablePill.querySelector('span'));
     });
   })
 </script>
