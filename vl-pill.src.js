@@ -28,6 +28,8 @@ export const VlPillElement = (SuperClass) => {
  * @extends VlElement
  *
  * @property {(success | warning | error)} type - Attribuut bepaalt de soort van pill: succes, probleem of fout.
+ * @property {closable} type - Attribuut bepaalt of de pill kan worden verwijderd.
+ * @property {checkable} type - Attribuut bepaalt of de pill aangechecked kan worden dmv een checkbox.
  */
 export class VlPill extends VlPillElement(HTMLElement) {
   static get pillTemplate() {

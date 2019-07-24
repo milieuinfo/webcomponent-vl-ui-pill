@@ -18,6 +18,7 @@
   <template>
     <label is="vl-label-pill">
       <input type="checkbox">
+      Optie
     </label>
   </template>
 </test-fixture>
@@ -78,6 +79,22 @@
       let val = "blabla";
       checkablePill.setAttribute('type',val);
       assert.isFalse(checkablePill.classList.contains("vl-pill--"+val));
+    });
+
+    test('checkable bevat input element van het type checkbox met juiste classes', () => {
+      const checkablePill = fixture('vl-label-pill-fixture');
+      let inputElement = checkablePill._inputElement;
+      should.exist(inputElement);
+      assert.isTrue(inputElement.getAttribute('type') == 'checkbox')
+      assert.isTrue(inputElement.classList.contains('vl-pill--checkable__checkbox'))
+    });
+
+    test('checkable bevat een span element', (done) => {
+      const checkablePill = fixture('vl-label-pill-fixture');
+      flush(function() {
+        should.exist(checkablePill.querySelector('span'));
+        done();
+      });
     });
   })
 </script>
