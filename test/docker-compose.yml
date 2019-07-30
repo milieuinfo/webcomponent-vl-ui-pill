@@ -30,8 +30,9 @@ services:
       - ${HOME:-.}/.git-credentials:/root/.git-credentials:ro
       - ..:/data:ro
       - ./wct.docker.conf.json:/workdir/wct.conf.json:ro
-      - /tmp/output:/workdir:rw
     command: bash -c "cp -R /data/. /workdir && npm install && npm run test"
+    extra_hosts:
+      - "repository.milieuinfo.be:${REPOSITORY_FIXED_IP}"
 networks:
   build-network:
     driver: bridge
