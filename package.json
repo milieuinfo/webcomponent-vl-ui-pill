@@ -22,6 +22,9 @@
   },
   "author": "DIDM",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "http://artifactory-pr-build.lb.cumuli.be:8081/artifactory/api/npm/acd-npm/"
+  },
   "bugs": {
     "url": "https://github.com/milieuinfo/webcomponent-vl-ui-pill/issues"
   },
