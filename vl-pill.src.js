@@ -30,6 +30,8 @@ export const VlPillElement = (SuperClass) => {
  * @property {(success | warning | error)} type - Attribuut bepaalt de soort van pill: succes, probleem of fout.
  * @property {closable} type - Attribuut bepaalt of de pill kan worden verwijderd.
  * @property {checkable} type - Attribuut bepaalt of de pill aangechecked kan worden dmv een checkbox.
+ * 
+ * @version <a href="http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/releases/latest">Release notes</a>
  */
 export class VlPill extends VlPillElement(HTMLElement) {
   static get pillTemplate() {
