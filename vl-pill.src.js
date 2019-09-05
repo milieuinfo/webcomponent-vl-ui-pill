@@ -23,7 +23,7 @@ export const VlPillElement = (SuperClass) => {
 /**
  * VlPill
  * @class
- * @classdesc Gebruik de pill om keywoorden (filters of tags) te visualiseren. <a href="demo/vl-pill.html">Demo</a>.
+ * @classdesc Gebruik de pill om keywoorden (filters of tags) te visualiseren.
  *
  * @extends VlElement
  *
@@ -31,7 +31,9 @@ export const VlPillElement = (SuperClass) => {
  * @property {closable} type - Attribuut bepaalt of de pill kan worden verwijderd.
  * @property {checkable} type - Attribuut bepaalt of de pill aangechecked kan worden dmv een checkbox.
  * 
- * @version <a href="http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/releases/latest">Release notes</a>
+ * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/releases/latest|Release notes}
+ * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/issues|Issues}
+ * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-ui-pill.html|Demo}
  */
 export class VlPill extends VlPillElement(HTMLElement) {
   static get pillTemplate() {
