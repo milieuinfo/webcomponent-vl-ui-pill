@@ -33,7 +33,7 @@ export const VlPillElement = (SuperClass) => {
  * 
  * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/releases/latest|Release notes}
  * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-ui-pill.html|Demo}
+ * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-pill.html|Demo}
  */
 export class VlPill extends VlPillElement(HTMLElement) {
   static get pillTemplate() {
