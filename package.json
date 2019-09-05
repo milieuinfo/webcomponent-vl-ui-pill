@@ -1,6 +1,6 @@
 {
   "name": "vl-ui-pill",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Gebruik de pill om keywoorden (filters of tags) te visualiseren.",
   "main": "vl-pill.js",
   "scripts": {
