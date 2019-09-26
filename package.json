@@ -30,20 +30,20 @@
   },
   "homepage": "https://github.com/milieuinfo/webcomponent-vl-ui-pill#readme",
   "dependencies": {
-    "vl-ui-core": "1.4.7"
+    "vl-ui-core": "^2.0.0"
   },
   "peerDependencies": {
-    "vl-ui-core": "^1.4.2"
+    "vl-ui-core": "^2.0.0"
   },
   "devDependencies": {
-    "@govflanders/vl-ui-core": "3.7.2",
-    "@govflanders/vl-ui-pill": "3.7.2",
-    "@govflanders/vl-ui-util": "3.7.2",
+    "@govflanders/vl-ui-core": "3.9.1",
+    "@govflanders/vl-ui-pill": "3.9.1",
+    "@govflanders/vl-ui-util": "3.9.1",
     "http-server": "0.11.1",
     "np": "3.1.0",
     "replace": "1.1.1",
     "uglify-es": "github:mishoo/UglifyJS2#harmony",
-    "vl-ui-util": "^2.0.3",
+    "vl-ui-util": "^2.0.5",
     "wct-browser-legacy": "1.0.2",
     "web-component-tester": "6.9.2"
   }
