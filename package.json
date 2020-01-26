@@ -2,7 +2,20 @@
   "name": "vl-ui-pill",
   "version": "1.0.8",
   "description": "Gebruik de pill om keywoorden (filters of tags) te visualiseren.",
+  "author": "DIDM",
+  "license": "MIT",
   "main": "index.js",
+  "homepage": "https://github.com/milieuinfo/webcomponent-vl-ui-pill#readme",
+  "bugs": {
+    "url": "https://github.com/milieuinfo/webcomponent-vl-ui-pill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/milieuinfo/webcomponent-vl-ui-pill.git"
+  },
+  "publishConfig": {
+    "registry": "http://artifactory-pr-build.lb.cumuli.be:8081/artifactory/api/npm/acd-npm/"
+  },
   "scripts": {
     "prepare": "npm update --dev vl-ui-util && npm run prepare:util",
     "prepare:util": "npm explore vl-ui-util -- npm run util",
@@ -21,35 +34,34 @@
     "test:server:start": "http-server &",
     "release": "np",
     "release:prepare": "npm run release:prepare:build && npm run release:prepare:css && npm run release:prepare:commit",
-    "release:prepare:build": "minify *.src.js > vl-pill.js",
-    "release:prepare:css": "replace '\\.\\./style.css' '/node_modules/vl-ui-pill/style.css' vl-pill.js",
-    "release:prepare:commit": "git add -f vl-pill.js && git commit --amend --no-edit && git pull",
+    "release:prepare:build": "npm run release:prepare:build:es6 && npm run release:prepare:build:es6:min && npm run release:prepare:build:node",
+    "release:prepare:build:es6": "npm run release:prepare:build:es6:copy && npm run release:prepare:build:es6:replace",
+    "release:prepare:build:es6:copy": "cp -R -f ./src/*.src.js ./vl-pill.js",
+    "release:prepare:build:es6:replace": "replace '\\.\\./style.css' '/node_modules/vl-ui-pill/style.css' vl-pill.js",
+    "release:prepare:build:es6:min": "npm run release:prepare:build:es6:min:copy && npm run release:prepare:build:es6:min:explode && npm run release:prepare:build:es6:min:minify",
+    "release:prepare:build:es6:min:copy": "cp -R -f ./src/*.src.js ./vl-pill.tmp.min.js",
+    "release:prepare:build:es6:min:explode": "npm explore vl-ui-util -- npm run explode -- --fileName=vl-pill.tmp.min.js",
+    "release:prepare:build:es6:min:minify": "minify ./vl-pill.tmp.min.js > ./vl-pill.min.js && rm -rf vl-pill.tmp.min.js",
+    "release:prepare:build:node": "npm run release:prepare:build:node:copy && npm run release:prepare:build:node:replace && npm run release:prepare:build:node:explode",
+    "release:prepare:build:node:copy": "cp -R -f ./src/*.src.js .",
+    "release:prepare:build:node:replace": "npm run release:prepare:build:node:replace:src && npm run release:prepare:build:node:replace:dist",
+    "release:prepare:build:node:replace:src": "replace  '/node_modules/vl-ui-(.*)/vl-(.*).js' 'vl-$2' vl-pill.src.js",
+    "release:prepare:build:node:replace:dist": "replace  '/node_modules/(.*)/vl-(.*).js' 'vl-$2.js' vl-pill.src.js",
+    "release:prepare:build:node:explode": "npm explore vl-ui-util -- npm run explode -- --fileName=vl-pill.src.js",
+    "release:prepare:commit": "git add -f . && git commit --amend --no-edit && git pull",
     "release:testless": "np --yolo",
     "demo": "http-server"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/milieuinfo/webcomponent-vl-ui-pill.git"
-  },
-  "author": "DIDM",
-  "license": "MIT",
-  "publishConfig": {
-    "registry": "http://artifactory-pr-build.lb.cumuli.be:8081/artifactory/api/npm/acd-npm/"
-  },
-  "bugs": {
-    "url": "https://github.com/milieuinfo/webcomponent-vl-ui-pill/issues"
-  },
-  "homepage": "https://github.com/milieuinfo/webcomponent-vl-ui-pill#readme",
   "dependencies": {
-    "vl-ui-core": "^3.0.0"
+    "vl-ui-core": "milieuinfo/webcomponent-vl-ui-core#ovam-poc"
   },
   "peerDependencies": {
-    "vl-ui-core": "^3.0.0"
+    "vl-ui-core": "milieuinfo/webcomponent-vl-ui-core#ovam-poc"
   },
   "devDependencies": {
     "@govflanders/vl-ui-core": "3.9.1",
     "@govflanders/vl-ui-pill": "3.9.1",
     "@govflanders/vl-ui-util": "3.9.1",
-    "vl-ui-util": "^3.4.2"
+    "vl-ui-util": "github:milieuinfo/webcomponent-vl-ui-util#ovam-poc"
   }
 }
