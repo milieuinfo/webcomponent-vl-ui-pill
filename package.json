@@ -5,6 +5,9 @@
   "author": "DIDM",
   "license": "MIT",
   "main": "index.js",
+  "exports": {
+    "import": "./src/index.js"
+  },
   "homepage": "https://github.com/milieuinfo/webcomponent-vl-ui-pill#readme",
   "bugs": {
     "url": "https://github.com/milieuinfo/webcomponent-vl-ui-pill/issues"
