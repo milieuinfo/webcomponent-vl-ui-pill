@@ -8,4 +8,11 @@ describe('vl-pill', async () => {
     before(() => {
         return vlPillPage.load();
     });
+
+    after((done) => { 
+        if (driver) {
+            driver.quit();
+        }
+        done();
+    });
 });
