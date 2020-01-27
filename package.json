@@ -4,9 +4,10 @@
   "description": "Gebruik de pill om keywoorden (filters of tags) te visualiseren.",
   "author": "DIDM",
   "license": "MIT",
-  "main": "index.js",
+  "main": "src/index.js",
   "exports": {
-    "import": "./src/index.js"
+    "require": "index.js",
+    "import": "src/index.js"
   },
   "homepage": "https://github.com/milieuinfo/webcomponent-vl-ui-pill#readme",
   "bugs": {
