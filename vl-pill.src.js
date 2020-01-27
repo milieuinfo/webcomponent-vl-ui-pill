@@ -1,4 +1,4 @@
-import { VlElement, NativeVlElement, define } from 'vl-core';
+import { VlElement, NativeVlElement, define } from 'vl-ui-core';
 
 export const VlPillElement = (SuperClass) => {
   return class extends VlElement(SuperClass) {
