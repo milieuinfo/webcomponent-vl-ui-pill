@@ -1,5 +1,5 @@
 
-const { assert, driver } = require('vl-ui-core').Test;
+const { assert, driver } = require('vl-ui-core').Test.Setup;
 const VlPillPage = require('./pages/vl-pill.page');
 
 describe('vl-pill', async () => {
@@ -7,5 +7,12 @@ describe('vl-pill', async () => {
 
     before(() => {
         return vlPillPage.load();
+    });
+
+    after((done) => { 
+        if (driver) {
+            driver.quit();
+        }
+        done();
     });
 });

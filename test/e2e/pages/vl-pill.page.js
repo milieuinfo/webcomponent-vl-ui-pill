@@ -1,6 +1,5 @@
 const VlPill = require('../components/vl-pill');
-const { Page } = require('vl-ui-core');
-const { Config } = require('vl-ui-core');
+const { Page, Config } = require('vl-ui-core').Test;
 
 class VlPillPage extends Page {
     async _getPill(selector) {
