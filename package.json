@@ -39,7 +39,7 @@
     "test:e2e:safari": "mocha --safari",
     "test:server:start": "http-server &",
     "release": "np",
-    "release:prepare": "npm run release:prepare:build && npm run release:prepare:css && npm run release:prepare:commit",
+    "release:prepare": "npm run release:prepare:build && npm run release:prepare:commit",
     "release:prepare:build": "npm run release:prepare:build:es6 && npm run release:prepare:build:es6:min && npm run release:prepare:build:node",
     "release:prepare:build:es6": "npm run release:prepare:build:es6:copy && npm run release:prepare:build:es6:replace",
     "release:prepare:build:es6:copy": "cp -R -f ./src/*.src.js ./vl-pill.js",
