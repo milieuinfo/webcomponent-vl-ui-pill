@@ -47,7 +47,7 @@ export class VlPill extends VlPillElement(HTMLElement) {
   constructor() {
     super(`
       <style>
-          @import "/node_modules/vl-ui-pill/style.css";
+          @import "../style.css";
       </style>
       ${VlPill.pillTemplate}
     `);
