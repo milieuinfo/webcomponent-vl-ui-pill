@@ -9,10 +9,7 @@ describe('vl-pill', async () => {
         return vlPillPage.load();
     });
 
-    after((done) => { 
-        if (driver) {
-            driver.quit();
-        }
-        done();
+    it("Dummy test om de browsers te doen sluiten", () => {
+    	assert.isTrue(true);
     });
 });

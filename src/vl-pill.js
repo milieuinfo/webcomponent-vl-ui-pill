@@ -1,4 +1,4 @@
-import { VlElement, NativeVlElement, define } from '/node_modules/vl-ui-core/vl-core.js';
+import { VlElement, NativeVlElement, define } from '/node_modules/vl-ui-core/dist/vl-core.js';
 
 export const VlPillElement = (SuperClass) => {
   return class extends VlElement(SuperClass) {
@@ -47,7 +47,7 @@ export class VlPill extends VlPillElement(HTMLElement) {
   constructor() {
     super(`
       <style>
-          @import "/node_modules/vl-ui-pill/style.css";
+          @import "/src/style.css";
       </style>
       ${VlPill.pillTemplate}
     `);
