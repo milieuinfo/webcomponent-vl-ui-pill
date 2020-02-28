@@ -26,7 +26,7 @@
         </code>
         </pre>
       <div class="demo">
-        <vl-pill>
+        <vl-pill id="pill">
           Optie 1
         </vl-pill>
       </div>
@@ -42,7 +42,7 @@
         </code>
         </pre>
       <div class="demo">
-        <vl-pill  type="success">
+        <vl-pill id="pill-success" type="success">
           Beschikbaar
         </vl-pill>
       </div>
@@ -58,7 +58,7 @@
         </code>
         </pre>
       <div class="demo">
-        <vl-pill  type="warning">
+        <vl-pill id="pill-warning" type="warning">
           Bijna volzet
         </vl-pill>
       </div>
@@ -74,7 +74,7 @@
         </code>
         </pre>
       <div class="demo">
-        <vl-pill  type="error">
+        <vl-pill id="pill-error" type="error">
           Volzet
         </vl-pill>
       </div>
@@ -90,9 +90,10 @@
         </code>
         </pre>
       <div class="demo">
-        <vl-pill  closable>
+        <vl-pill id="pill-closable" closable>
           Optie 1
         </vl-pill>
+        <span id="close-result"></span>
       </div>
     </div>
 
@@ -106,7 +107,7 @@
         </code>
         </pre>
       <div class="demo">
-        <vl-pill  closable type="success">
+        <vl-pill id="pill-closable-succes" closable type="success">
           Optie 1
         </vl-pill>
       </div>
@@ -116,17 +117,15 @@
       <h2>Pill checkable</h2>
       <pre>
         <code class="line-numbers language-markup">
-          &lt;label is="vl-label-pill"&gt;
-            &lt;input type="checkbox"&gt;
+          &lt;vl-pill checkable&gt;
             Optie 1
-          &lt;/label&gt;
+          &lt;/vl-pill&gt;
         </code>
       </pre>
       <div class="demo">
-        <label is="vl-label-pill">
-            <input type="checkbox">
-            Optie 1
-        </label>
+        <vl-pill id="pill-checkable" checkable>
+          Optie 1
+        </vl-pill>
       </div>
     </div>
 
@@ -134,18 +133,22 @@
       <h2>Pill checkable error</h2>
       <pre>
         <code class="line-numbers language-markup">
-          &lt;label is="vl-label-pill" type="error"&gt;
-            &lt;input type="checkbox"&gt;
+          &lt;vl-pill checkable type="error"&gt;
             Optie 1
-          &lt;/label&gt;
+          &lt;/vl-pill&gt;
         </code>
       </pre>
       <div class="demo">
-        <label is="vl-label-pill" type="error">
-            <input type="checkbox">
-            Optie 1
-        </label>
+        <vl-pill id="pill-checkable-error" checkable type="error">
+          Optie 1
+        </vl-pill>
       </div>
     </div>
+
+    <script>
+      document.querySelector('#pill-closable').addEventListener('vl-pill-close', () => {
+        document.querySelector('#close-result').textContent = 'Er werd op de sluitknop gedrukt!';
+      });
+    </script>
     </body>
 </html>
