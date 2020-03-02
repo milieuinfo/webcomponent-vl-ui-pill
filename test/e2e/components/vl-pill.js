@@ -32,7 +32,19 @@ class VlPill extends VlElement {
         return this.getAssignedNodes(slot);
     }
 
-    async getType() {
+    async isSuccess() {
+        return await this._getType() === 'success';
+    }
+
+    async isWarning() {
+        return await this._getType() === 'warning';
+    }
+
+    async isError() {
+        return await this._getType() === 'error';
+    }
+
+    async _getType() {
         return this.getAttribute('type');
     }
 

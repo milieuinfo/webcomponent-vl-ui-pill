@@ -16,16 +16,24 @@ describe('vl-pill', async () => {
 
     it("Als gebruiker kan ik pillen zien zonder type en succes, waarschuwing en fout pillen", async () => {
         const pill = await vlPillPage.getStandardPill();
-        await assert.eventually.isNull(pill.getType());
+        await assert.eventually.isFalse(pill.isSuccess());
+        await assert.eventually.isFalse(pill.isWarning());
+        await assert.eventually.isFalse(pill.isError());
 
         const successPill = await vlPillPage.getSuccessPill();
-        await assert.eventually.equal(successPill.getType(), 'success');
+        await assert.eventually.isTrue(successPill.isSuccess());
+        await assert.eventually.isFalse(successPill.isWarning());
+        await assert.eventually.isFalse(successPill.isError());
 
         const warningPill = await vlPillPage.getWarningPill();
-        await assert.eventually.equal(warningPill.getType(), 'warning');
+        await assert.eventually.isFalse(warningPill.isSuccess());
+        await assert.eventually.isTrue(warningPill.isWarning());
+        await assert.eventually.isFalse(warningPill.isError());
 
         const errorPill = await vlPillPage.getErrorPill();
-        await assert.eventually.equal(errorPill.getType(), 'error');
+        await assert.eventually.isFalse(errorPill.isSuccess());
+        await assert.eventually.isFalse(errorPill.isWarning());
+        await assert.eventually.isTrue(errorPill.isError());
     });
 
     it("Als gebruiker kan ik een closable pill sluiten", async () => {

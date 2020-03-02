@@ -81,7 +81,7 @@
       should.exist(shadowRoot.querySelector(".vl-pill--checkable"));
 
       pill.removeAttribute('checkable');
-      should.not.exist(shadowRoot.querySelector("input"));
+      should.not.exist(pill._checkbox);
       should.not.exist(shadowRoot.querySelector(".vl-pill--checkable"));
     });
 
