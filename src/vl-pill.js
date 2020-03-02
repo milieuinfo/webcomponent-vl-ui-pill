@@ -1,6 +1,17 @@
 import { VlElement, define } from '/node_modules/vl-ui-core/dist/vl-core.js';
 
 /**
+ * Pill gesloten event
+ * @event VlPill#vl-pill-close
+ */
+
+/**
+ * Pill checked event
+ * @event VlPill#vl-pill-check
+ * @property {boolean} checked - Of de pill checked of unchecked werd.
+ */
+
+/**
  * VlPill
  * @class
  * @classdesc Gebruik de pill om keywoorden (filters of tags) te visualiseren.
@@ -22,6 +33,7 @@ export class VlPill extends VlElement(HTMLElement) {
       check: 'vl-pill-check'
     };
   }
+
   constructor() {
     super(`
       <style>
