@@ -11,7 +11,7 @@ class VlPill extends VlElement {
     }
 
     async isChecked() {
-        return await this.driver.executeScript('return arguments[0].checked', this);
+        return this.driver.executeScript('return arguments[0].checked', this);
     }
 
     async toggleCheck() {
@@ -27,7 +27,7 @@ class VlPill extends VlElement {
         }
     }
 
-    async getContent() {
+    async getContentSlotNodes() {
         const slot = await this._getContentSlot();
         return this.getAssignedNodes(slot);
     }

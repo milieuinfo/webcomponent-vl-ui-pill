@@ -10,7 +10,7 @@ describe('vl-pill', async () => {
 
     it("Als gebruiker kan ik de inhoud van een pill zien", async () => {
         const pill = await vlPillPage.getStandardPill();
-        const content = await pill.getContent();
+        const content = await pill.getContentSlotNodes();
         await assert.equal(content[0].textContent.trim(), 'Optie 1');
     });
 
