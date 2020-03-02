@@ -60,8 +60,8 @@
 
       pill.setAttribute('closable', '');
       pill.addEventListener(VlPill.EVENTS.close, (event) => {
-        event.composed.should.be.true;
-        event.bubbles.should.be.true;
+        event.composed.should.be.false;
+        event.bubbles.should.be.false;
         done();
       });
 
@@ -133,8 +133,8 @@
 
       pill.setAttribute('checkable', '');
       pill.addEventListener(VlPill.EVENTS.check, function(event) {
-        event.composed.should.be.true;
-        event.bubbles.should.be.true;
+        event.composed.should.be.false;
+        event.bubbles.should.be.false;
         event.detail.checked.should.equal(expectedCheckedValue);
 
         if (expectedCheckedValue) {

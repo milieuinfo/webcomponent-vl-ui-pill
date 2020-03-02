@@ -113,14 +113,14 @@ export class VlPill extends VlElement(HTMLElement) {
   __removeClosableEventListeners() {
     const closeButton = this._closeButton;
     if (closeButton) {
-      closeButton.removeEventListener('click', this._closeClicked);
+      closeButton.removeEventListener('click', this._closeClicked.bind(this));
     }
   }
 
   __removeCheckableEventListeners() {
     const checkbox = this._checkbox;
     if (checkbox) {
-      checkbox.removeEventListener('click', this._checked);
+      checkbox.removeEventListener('click', this._checked.bind(this));
     }
   }
 
@@ -132,14 +132,14 @@ export class VlPill extends VlElement(HTMLElement) {
   __addClosableEventListeners() {
     const closeButton = this._closeButton;
     if (closeButton) {
-      closeButton.addEventListener('click', this._closeClicked);
+      closeButton.addEventListener('click', this._closeClicked.bind(this));
     }
   }
 
   __addCheckableEventListeners() {
     const checkbox = this._checkbox;
     if (checkbox) {
-      checkbox.addEventListener('click', this._checked);
+      checkbox.addEventListener('click', this._checked.bind(this));
     }
   }
 
@@ -155,13 +155,11 @@ export class VlPill extends VlElement(HTMLElement) {
   }
 
   _closeClicked() {
-    this.dispatchEvent(new CustomEvent(VlPill.EVENTS.close, { composed: true, bubbles: true }));
+    this.dispatchEvent(new CustomEvent(VlPill.EVENTS.close));
   }
 
   _checked() {
     this.dispatchEvent(new CustomEvent(VlPill.EVENTS.check, {
-      composed: true,
-      bubbles: true,
       detail: {
         checked: this.checked
       }
