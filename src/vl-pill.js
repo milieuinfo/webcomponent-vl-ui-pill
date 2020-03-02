@@ -2,12 +2,12 @@ import { VlElement, define } from '/node_modules/vl-ui-core/dist/vl-core.js';
 
 /**
  * Pill gesloten event
- * @event VlPill#vl-pill-close
+ * @event VlPill#close
  */
 
 /**
  * Pill checked event
- * @event VlPill#vl-pill-check
+ * @event VlPill#check
  * @property {boolean} checked - Of de pill checked of unchecked werd.
  */
 
@@ -29,8 +29,8 @@ import { VlElement, define } from '/node_modules/vl-ui-core/dist/vl-core.js';
 export class VlPill extends VlElement(HTMLElement) {
   static get EVENTS() {
     return {
-      close: 'vl-pill-close',
-      check: 'vl-pill-check'
+      close: 'close',
+      check: 'check'
     };
   }
 
