@@ -57,4 +57,27 @@ class VlPill extends VlElement {
     }
 }
 
-module.exports = VlPill;
+class VlButtonPill extends VlElement {
+
+    async getPillType() {
+        return this.getAttribute('data-vl-type');
+    }
+
+    async isSuccessPill() {
+        return (await this.getPillType()) === 'success';
+    }
+
+    async isWarningPill() {
+        return (await this.getPillType()) === 'warning';
+    }
+
+    async isErrorPill() {
+        return (await this.getPillType()) === 'error';
+    }
+
+}
+
+module.exports = {
+    VlPill,
+    VlButtonPill
+};

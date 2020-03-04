@@ -62,4 +62,38 @@ describe('vl-pill', async () => {
         await pill.toggleCheck();
         await assert.eventually.isFalse(pill.isChecked());
     });
+
+    it('als gebruiker zie ik een pill button', async () => {
+        const pillButton = await vlPillPage.getPillButton();
+        await assert.eventually.isTrue(pillButton.isDisplayed());
+        await assert.eventually.equal(pillButton.getText(), 'Optie 1');
+    });
+
+    // type gaat gewijzigd worden naar data-vl-type omdat er nu een clash is met het default type attribuut
+    it('als gebruiker wil ik het verschil kunnen zien tussen een pill knop van een bepaald type en een gewone pill knop', async () => {
+        const pillButton = await vlPillPage.getPillButton();
+        const pillSuccessButton = await vlPillPage.getPillSuccessButton();
+        const pillWarningButton = await vlPillPage.getPillWarningButton();
+        const pillErrorButton = await vlPillPage.getPillErrorButton();
+        await assert.eventually.isFalse(pillButton.isSuccessPill());
+        await assert.eventually.isFalse(pillButton.isWarningPill());
+        await assert.eventually.isFalse(pillButton.isErrorPill());
+        await assert.eventually.equal(pillButton.getText(), 'Optie 1');
+        await assert.eventually.equal(pillButton.getPillType(), undefined);
+        await assert.eventually.isTrue(pillSuccessButton.isSuccessPill());
+        await assert.eventually.isFalse(pillSuccessButton.isWarningPill());
+        await assert.eventually.isFalse(pillSuccessButton.isErrorPill());
+        await assert.eventually.equal(pillSuccessButton.getText(), 'Optie 1');
+        await assert.eventually.equal(pillSuccessButton.getPillType(), 'success');
+        await assert.eventually.isFalse(pillWarningButton.isSuccessPill());
+        await assert.eventually.isTrue(pillWarningButton.isWarningPill());
+        await assert.eventually.isFalse(pillWarningButton.isErrorPill());
+        await assert.eventually.equal(pillWarningButton.getText(), 'Optie 1');
+        await assert.eventually.equal(pillWarningButton.getPillType(), 'warning');
+        await assert.eventually.isFalse(pillErrorButton.isSuccessPill());
+        await assert.eventually.isFalse(pillErrorButton.isWarningPill());
+        await assert.eventually.isTrue(pillErrorButton.isErrorPill());
+        await assert.eventually.equal(pillErrorButton.getText(), 'Optie 1');
+        await assert.eventually.equal(pillErrorButton.getPillType(), 'error');
+    });
 });
