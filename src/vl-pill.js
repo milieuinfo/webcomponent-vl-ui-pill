@@ -1,5 +1,25 @@
 import { VlElement, define } from '/node_modules/vl-ui-core/dist/vl-core.js';
 
+export const VlPillElement = (SuperClass) => {
+  return class extends VlElement(SuperClass) {
+    static get _observedAttributes() {
+      return ['type'];
+    }
+  
+    get _classPrefix() {
+      return 'vl-pill--';
+    }
+  
+    _typeChangedCallback(oldValue, newValue) {
+      if (["success", "warning", "error"].indexOf(newValue) >= 0) {
+        this._changeClass(this._element, oldValue, newValue);
+      } else {
+        this._element.classList.remove(this._classPrefix + oldValue);
+      }
+    }
+  }
+};
+
 /**
  * Pill gesloten event
  * @event VlPill#close
@@ -26,7 +46,7 @@ import { VlElement, define } from '/node_modules/vl-ui-core/dist/vl-core.js';
  * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-pill.html|Demo}
  */
-export class VlPill extends VlElement(HTMLElement) {
+export class VlPill extends VlPillElement(HTMLElement) {
   static get EVENTS() {
     return {
       close: 'close',
@@ -73,7 +93,7 @@ export class VlPill extends VlElement(HTMLElement) {
   }
 
   static get _observedAttributes() {
-    return ['type', 'closable', 'checkable'];
+    return super._observedAttributes.concat(['closable', 'checkable']);
   }
 
   get _pillTemplate() {
