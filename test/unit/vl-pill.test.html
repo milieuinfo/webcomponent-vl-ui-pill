@@ -14,6 +14,12 @@
   </template>
 </test-fixture>
 
+<test-fixture id="vl-button-pill-fixture">
+  <template>
+    <button is="vl-button-pill"></button>
+  </template>
+</test-fixture>
+
 <script type="module">
   import { VlPill } from '../../src/vl-pill';
 
@@ -119,6 +125,28 @@
       pill.checked.should.be.false;
     });
 
+
+    // clickable pill
+    test('clickable bevat juiste type class', () => {
+      const clickablePill = fixture('vl-button-pill-fixture');
+      assert.isTrue(clickablePill.classList.contains('vl-pill'));
+      assert.isTrue(clickablePill.classList.contains('vl-pill--clickable'));
+
+      // valid values
+      ["success", "warning", "error"].forEach((val) => {
+        assert.isFalse(clickablePill.classList.contains("vl-pill--" + val));
+        clickablePill.setAttribute('type', val);
+        assert.isTrue(clickablePill.classList.contains("vl-pill--" + val));
+        clickablePill.removeAttribute('type');
+        assert.isFalse(clickablePill.classList.contains("vl-pill--" + val));
+      });
+
+      // invalid value
+      let val = "blabla";
+      clickablePill.setAttribute('type', val);
+      assert.isFalse(clickablePill.classList.contains("vl-pill--" + val));
+    });
+      
     test('checkable pill stuurt event uit wanneer hij aan- en uitgevinkt wordt via "checked"', (done) => {
       testCheckEvent(done, pill => pill.checked = !pill.checked);
     });
