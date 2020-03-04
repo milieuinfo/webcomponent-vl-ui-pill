@@ -1,4 +1,4 @@
-import { VlElement, define } from '/node_modules/vl-ui-core/dist/vl-core.js';
+import { VlElement, define, NativeVlElement } from '/node_modules/vl-ui-core/dist/vl-core.js';
 
 export const VlPillElement = (SuperClass) => {
   return class extends VlElement(SuperClass) {
@@ -207,4 +207,13 @@ export class VlPill extends VlPillElement(HTMLElement) {
   }
 }
 
+export class VlButtonPill extends VlPillElement(NativeVlElement(HTMLButtonElement)) {
+  constructor() {
+      super();
+      this.classList.add('vl-pill');
+      this.classList.add('vl-pill--clickable');
+  }
+}
+
 define('vl-pill', VlPill);
+define('vl-button-pill', VlButtonPill, {extends: 'button'});
