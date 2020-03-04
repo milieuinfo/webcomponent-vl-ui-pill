@@ -205,16 +205,6 @@ export class VlPill extends VlPillElement(HTMLElement) {
   _checkableChangedCallback() {
     this._redraw();
   }
-
-  _typeChangedCallback(oldValue, newValue) {
-    if (["success", "warning", "error"].indexOf(newValue) >= 0) {
-      this._changeClass(this._element, oldValue, newValue);
-    } else {
-      this._element.classList.remove(this._classPrefix + oldValue);
-    }
-  }
-
-
 }
 
 define('vl-pill', VlPill);
