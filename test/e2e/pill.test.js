@@ -68,25 +68,4 @@ describe('vl-pill', async () => {
         await assert.eventually.isTrue(pillButton.isDisplayed());
         await assert.eventually.equal(pillButton.getText(), 'Optie 1');
     });
-
-    // type gaat gewijzigd worden naar data-vl-type omdat er nu een clash is met het default type attribuut
-    it('als gebruiker wil ik het verschil kunnen zien tussen een pill knop van een bepaald type en een gewone pill knop', async () => {
-        const pillButton = await vlPillPage.getPillButton();
-        const pillSuccessButton = await vlPillPage.getPillSuccessButton();
-        const pillWarningButton = await vlPillPage.getPillWarningButton();
-        const pillErrorButton = await vlPillPage.getPillErrorButton();
-
-        await assertPillButtonWithTextHasCorrectType(pillButton, 'Optie 1', undefined);
-        await assertPillButtonWithTextHasCorrectType(pillSuccessButton, 'Optie 1', 'success');
-        await assertPillButtonWithTextHasCorrectType(pillWarningButton, 'Optie 1', 'warning');
-        await assertPillButtonWithTextHasCorrectType(pillErrorButton, 'Optie 1', 'error');
-    });
-
-    async function assertPillButtonWithTextHasCorrectType(pillButton, text, type) {
-        await assert.eventually.equal(pillButton.getText(), text);
-        await assert.eventually.equal(pillButton.getPillType(), type);
-        await assert.eventually.equal(pillButton.isSuccessPill(), type === 'success');
-        await assert.eventually.equal(pillButton.isWarningPill(), type === 'warning');
-        await assert.eventually.equal(pillButton.isErrorPill(), type === 'error');
-    }
 });

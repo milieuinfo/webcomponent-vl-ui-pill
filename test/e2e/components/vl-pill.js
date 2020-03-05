@@ -1,7 +1,27 @@
 const { VlElement } = require('vl-ui-core').Test;
 const { By } = require('vl-ui-core').Test.Setup;
 
-class VlPill extends VlElement {
+
+class VlButtonPillElement extends VlElement {
+    async getType() {
+        return this.getAttribute('type');
+    }
+
+    async isSuccess() {
+        return await this.getType() === 'success';
+    }
+
+    async isWarning() {
+        return await this.getType() === 'warning';
+    }
+
+    async isError() {
+        return await this.getType() === 'error';
+    }
+
+}
+
+class VlPill extends VlButtonPillElement {
     async isClosable() {
         return this.hasAttribute('closable');
     }
@@ -32,22 +52,6 @@ class VlPill extends VlElement {
         return this.getAssignedNodes(slot);
     }
 
-    async isSuccess() {
-        return await this._getType() === 'success';
-    }
-
-    async isWarning() {
-        return await this._getType() === 'warning';
-    }
-
-    async isError() {
-        return await this._getType() === 'error';
-    }
-
-    async _getType() {
-        return this.getAttribute('type');
-    }
-
     async _getContentSlot() {
         return this.shadowRoot.findElement(By.css('slot'));
     }
@@ -57,27 +61,10 @@ class VlPill extends VlElement {
     }
 }
 
-class VlButtonPill extends VlElement {
-
-    async getPillType() {
-        return this.getAttribute('data-vl-type');
-    }
-
-    async isSuccessPill() {
-        return (await this.getPillType()) === 'success';
-    }
-
-    async isWarningPill() {
-        return (await this.getPillType()) === 'warning';
-    }
-
-    async isErrorPill() {
-        return (await this.getPillType()) === 'error';
-    }
-
-}
+class VlButtonPill extends VlButtonPillElement {}
 
 module.exports = {
     VlPill,
+    VlButtonPillElement,
     VlButtonPill
 };
