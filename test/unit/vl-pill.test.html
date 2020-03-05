@@ -142,7 +142,7 @@
       });
 
       // invalid value
-      let val = "blabla";
+      const val = "blabla";
       clickablePill.setAttribute('type', val);
       assert.isFalse(clickablePill.classList.contains("vl-pill--" + val));
     });

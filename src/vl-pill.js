@@ -1,5 +1,18 @@
 import { VlElement, define, NativeVlElement } from '/node_modules/vl-ui-core/dist/vl-core.js';
 
+/**
+ * VlPillElement
+ * @class
+ * @classdesc Gebruik de VlPillElement als base class om keywoorden (filters of tags) te visualiseren.
+ *
+ * @extends VlElement
+ *
+ * @property {(success | warning | error)} type - Attribuut bepaalt de soort van pill: succes, probleem of fout.
+ * 
+ * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/releases/latest|Release notes}
+ * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/issues|Issues}
+ * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-pill.html|Demo}
+ */
 export const VlPillElement = (SuperClass) => {
   return class extends VlElement(SuperClass) {
     static get _observedAttributes() {
@@ -36,9 +49,8 @@ export const VlPillElement = (SuperClass) => {
  * @class
  * @classdesc Gebruik de pill om keywoorden (filters of tags) te visualiseren.
  *
- * @extends VlElement
+ * @extends VlPillElement
  *
- * @property {(success | warning | error)} type - Attribuut bepaalt de soort van pill: succes, probleem of fout.
  * @property {boolean} closable - Attribuut bepaalt of de pill kan worden verwijderd (kan niet in combinatie met checkable gebruikt worden).
  * @property {boolean} checkable - Attribuut bepaalt of de pill kan worden aangevinkt (kan niet in combinatie met closable gebruikt worden).
  *
@@ -211,7 +223,7 @@ export class VlButtonPill extends VlPillElement(NativeVlElement(HTMLButtonElemen
   constructor() {
       super();
       this.classList.add('vl-pill');
-      this.classList.add('vl-pill--clickable');
+      this.classList.add(this._classPrefix + 'clickable');
   }
 }
 
