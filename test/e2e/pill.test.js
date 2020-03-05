@@ -62,4 +62,10 @@ describe('vl-pill', async () => {
         await pill.toggleCheck();
         await assert.eventually.isFalse(pill.isChecked());
     });
+
+    it('als gebruiker zie ik een pill button', async () => {
+        const pillButton = await vlPillPage.getPillButton();
+        await assert.eventually.isTrue(pillButton.isDisplayed());
+        await assert.eventually.equal(pillButton.getText(), 'Optie 1');
+    });
 });

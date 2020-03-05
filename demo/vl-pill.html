@@ -145,6 +145,39 @@
       </div>
     </div>
 
+    <div>
+      <h2>Button pill</h2>
+      <pre>
+          <code class="line-numbers language-markup">
+            &lt;button is="vl-button-pill" type="button"&gt;
+              Optie 1
+            &lt;/button&gt;
+          </code>
+      </pre>
+      <div class="demo">
+          <button is="vl-button-pill" id="button-pill" type="button">
+              Optie 1
+          </button>
+      </div>
+  </div>
+
+  <div>
+      <h2>Button pill types</h2>
+      <pre>
+          <code class="line-numbers language-markup">
+              &lt;button is="vl-button-pill" type="success"&gt;Optie 1&lt;/button&gt;
+              &lt;button is="vl-button-pill" type="warning"&gt;Optie 1&lt;/button&gt;
+              &lt;button is="vl-button-pill" type="error"&gt;Optie 1&lt;/button&gt;
+          </code>
+      </pre>
+      <div class="demo">
+          <button is="vl-button-pill" id="button-pill-success" type="success" data-vl-type="success">Optie 1</button>
+          <button is="vl-button-pill" id="button-pill-warning" type="warning" data-vl-type="warning">Optie 1</button>
+          <button is="vl-button-pill" id="button-pill-error" type="error" data-vl-type="error">Optie 1</button>
+      </div>
+  </div>
+
+  
     <script>
       document.querySelector('#pill-closable').addEventListener('close', () => {
         document.querySelector('#close-result').textContent = 'Er werd op de sluitknop gedrukt!';

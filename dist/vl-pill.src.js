@@ -1,4 +1,37 @@
-import { VlElement, define } from 'vl-ui-core';
+import { VlElement, define, NativeVlElement } from 'vl-ui-core';
+
+/**
+ * VlPillElement
+ * @class
+ * @classdesc Gebruik de VlPillElement als base class om keywoorden (filters of tags) te visualiseren.
+ *
+ * @extends VlElement
+ *
+ * @property {(success | warning | error)} type - Attribuut bepaalt de soort van pill: succes, probleem of fout.
+ * 
+ * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/releases/latest|Release notes}
+ * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/issues|Issues}
+ * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-pill.html|Demo}
+ */
+export const VlPillElement = (SuperClass) => {
+  return class extends VlElement(SuperClass) {
+    static get _observedAttributes() {
+      return ['type'];
+    }
+  
+    get _classPrefix() {
+      return 'vl-pill--';
+    }
+  
+    _typeChangedCallback(oldValue, newValue) {
+      if (["success", "warning", "error"].indexOf(newValue) >= 0) {
+        this._changeClass(this._element, oldValue, newValue);
+      } else {
+        this._element.classList.remove(this._classPrefix + oldValue);
+      }
+    }
+  }
+};
 
 /**
  * Pill gesloten event
@@ -16,9 +49,8 @@ import { VlElement, define } from 'vl-ui-core';
  * @class
  * @classdesc Gebruik de pill om keywoorden (filters of tags) te visualiseren.
  *
- * @extends VlElement
+ * @extends VlPillElement
  *
- * @property {(success | warning | error)} type - Attribuut bepaalt de soort van pill: succes, probleem of fout.
  * @property {boolean} closable - Attribuut bepaalt of de pill kan worden verwijderd (kan niet in combinatie met checkable gebruikt worden).
  * @property {boolean} checkable - Attribuut bepaalt of de pill kan worden aangevinkt (kan niet in combinatie met closable gebruikt worden).
  *
@@ -26,7 +58,7 @@ import { VlElement, define } from 'vl-ui-core';
  * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-pill.html|Demo}
  */
-export class VlPill extends VlElement(HTMLElement) {
+export class VlPill extends VlPillElement(HTMLElement) {
   static get EVENTS() {
     return {
       close: 'close',
@@ -74,7 +106,7 @@ export class VlPill extends VlElement(HTMLElement) {
   }
 
   static get _observedAttributes() {
-    return ['type', 'closable', 'checkable'];
+    return super._observedAttributes.concat(['closable', 'checkable']);
   }
 
   get _pillTemplate() {
@@ -186,17 +218,16 @@ export class VlPill extends VlElement(HTMLElement) {
   _checkableChangedCallback() {
     this._redraw();
   }
+}
 
-  _typeChangedCallback(oldValue, newValue) {
-    if (["success", "warning", "error"].indexOf(newValue) >= 0) {
-      this._changeClass(this._element, oldValue, newValue);
-    } else {
-      this._element.classList.remove(this._classPrefix + oldValue);
-    }
+export class VlButtonPill extends VlPillElement(NativeVlElement(HTMLButtonElement)) {
+  constructor() {
+      super();
+      this.classList.add('vl-pill');
+      this.classList.add(this._classPrefix + 'clickable');
   }
-
-
 }
 
 define('vl-pill', VlPill);
+define('vl-button-pill', VlButtonPill, {extends: 'button'});
 

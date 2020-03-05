@@ -1,9 +1,13 @@
-const VlPill = require('../components/vl-pill');
+const {VlPill, VlButtonPill}  = require('../components/vl-pill');
 const { Page, Config, VlElement } = require('vl-ui-core').Test;
 
 class VlPillPage extends Page {
     async _getPill(selector) {
         return new VlPill(this.driver, selector);
+    }
+
+    async _getPillButton(selector) {
+        return new VlButtonPill(this.driver, selector);
     }
 
     async load() {
@@ -36,6 +40,22 @@ class VlPillPage extends Page {
 
     async getCheckablePill() {
         return this._getPill('#pill-checkable');
+    }
+
+    async getPillButton() {
+        return this._getPillButton('#button-pill');
+    }
+
+    async getPillSuccessButton() {
+        return this._getPillButton('#button-pill-success');
+    }
+
+    async getPillWarningButton() {
+        return this._getPillButton('#button-pill-warning');
+    }
+
+    async getPillErrorButton() {
+        return this._getPillButton('#button-pill-error');
     }
 }
 
