@@ -2,7 +2,7 @@ const { VlElement } = require('vl-ui-core').Test;
 const { By } = require('vl-ui-core').Test.Setup;
 
 
-class VlButtonPillElement extends VlElement {
+class VlPillElement extends VlElement {
     async getType() {
         return this.getAttribute('type');
     }
@@ -21,7 +21,7 @@ class VlButtonPillElement extends VlElement {
 
 }
 
-class VlPill extends VlButtonPillElement {
+class VlPill extends VlPillElement {
     async isClosable() {
         return this.hasAttribute('closable');
     }
@@ -61,10 +61,10 @@ class VlPill extends VlButtonPillElement {
     }
 }
 
-class VlButtonPill extends VlButtonPillElement {}
+class VlButtonPill extends VlPillElement {}
 
 module.exports = {
     VlPill,
-    VlButtonPillElement,
+    VlPillElement,
     VlButtonPill
 };
