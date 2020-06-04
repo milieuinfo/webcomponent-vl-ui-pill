@@ -1,37 +1,41 @@
-import { VlElement, define, NativeVlElement } from '/node_modules/vl-ui-core/dist/vl-core.js';
+import {vlElement, nativeVlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
 
 /**
  * VlPillElement
  * @class
  * @classdesc Gebruik de VlPillElement als base class om keywoorden (filters of tags) te visualiseren.
  *
- * @extends VlElement
+ * @mixin vlElement
+ *
+ * @param {Object} SuperClass
  *
  * @property {(success | warning | error)} type - Attribuut bepaalt de soort van pill: succes, probleem of fout.
- * 
+ *
  * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/releases/latest|Release notes}
  * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-pill.html|Demo}
  */
-export const VlPillElement = (SuperClass) => {
-  return class extends VlElement(SuperClass) {
+export const vlPillElement = (SuperClass) => {
+  return class extends vlElement(SuperClass) {
     static get _observedAttributes() {
       return ['type'];
     }
-  
+
     get _classPrefix() {
       return 'vl-pill--';
     }
-  
+
     _typeChangedCallback(oldValue, newValue) {
-      if (["success", "warning", "error"].indexOf(newValue) >= 0) {
+      if (['success', 'warning', 'error'].indexOf(newValue) >= 0) {
         this._changeClass(this._element, oldValue, newValue);
       } else {
         this._element.classList.remove(this._classPrefix + oldValue);
       }
     }
-  }
+  };
 };
+
+export const VlPillElement = vlPillElement;
 
 /**
  * Pill gesloten event
@@ -49,7 +53,8 @@ export const VlPillElement = (SuperClass) => {
  * @class
  * @classdesc Gebruik de pill om keywoorden (filters of tags) te visualiseren.
  *
- * @extends VlPillElement
+ * @extends HTMLElement
+ * @mixin vlPillElement
  *
  * @property {boolean} closable - Attribuut bepaalt of de pill kan worden verwijderd (kan niet in combinatie met checkable gebruikt worden).
  * @property {boolean} checkable - Attribuut bepaalt of de pill kan worden aangevinkt (kan niet in combinatie met closable gebruikt worden).
@@ -58,18 +63,18 @@ export const VlPillElement = (SuperClass) => {
  * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-pill.html|Demo}
  */
-export class VlPill extends VlPillElement(HTMLElement) {
+export class VlPill extends vlPillElement(HTMLElement) {
   static get EVENTS() {
     return {
       close: 'close',
-      check: 'check'
+      check: 'check',
     };
   }
 
   constructor() {
     super(`
       <style>
-          @import '/node_modules/vl-ui-pill/dist/style.css';
+          @import /node_modules/vl-ui-pill/dist/style.css;
       </style>
       ${VlPill._standardPillTemplate}
     `);
@@ -78,7 +83,7 @@ export class VlPill extends VlPillElement(HTMLElement) {
   /**
    * Is de pill aangevinkt?
    *
-   * @returns {boolean} Geeft terug of de pill aangevinkt is. Als de pill niet checkable is, wordt undefined teruggegeven.
+   * @return {boolean} Geeft terug of de pill aangevinkt is. Als de pill niet checkable is, wordt undefined teruggegeven.
    */
   get checked() {
     const checkbox = this._checkbox;
@@ -170,7 +175,7 @@ export class VlPill extends VlPillElement(HTMLElement) {
 
   __removeEventListeners() {
     this.__removeClosableEventListeners();
-    this.__removeCheckableEventListeners()
+    this.__removeCheckableEventListeners();
   }
 
   __addClosableEventListeners() {
@@ -205,8 +210,8 @@ export class VlPill extends VlPillElement(HTMLElement) {
   _checked() {
     this.dispatchEvent(new CustomEvent(VlPill.EVENTS.check, {
       detail: {
-        checked: this.checked
-      }
+        checked: this.checked,
+      },
     }));
   }
 
@@ -219,11 +224,11 @@ export class VlPill extends VlPillElement(HTMLElement) {
   }
 }
 
-export class VlButtonPill extends VlPillElement(NativeVlElement(HTMLButtonElement)) {
+export class VlButtonPill extends vlPillElement(nativeVlElement(HTMLButtonElement)) {
   constructor() {
-      super();
-      this.classList.add('vl-pill');
-      this.classList.add(this._classPrefix + 'clickable');
+    super();
+    this.classList.add('vl-pill');
+    this.classList.add(this._classPrefix + 'clickable');
   }
 }
 
