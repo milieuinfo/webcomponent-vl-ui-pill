@@ -3,11 +3,6 @@ const {By} = require('vl-ui-core').Test.Setup;
 
 
 class VlPillElement extends VlElement {
-  async getText() {
-    const text = await super.getText();
-    return text.trim();
-  }
-
   async getType() {
     return this.getAttribute('type');
   }
