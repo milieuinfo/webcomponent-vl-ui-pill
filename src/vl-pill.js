@@ -5,8 +5,6 @@ import {vlElement, nativeVlElement, define} from '/node_modules/vl-ui-core/dist/
  * @class
  * @classdesc Gebruik de VlPillElement als base class om keywoorden (filters of tags) te visualiseren.
  *
- * @mixin vlElement
- *
  * @param {Object} SuperClass
  *
  * @property {(success | warning | error)} type - Attribuut bepaalt de soort van pill: succes, probleem of fout.
@@ -54,7 +52,6 @@ export const VlPillElement = vlPillElement;
  * @classdesc Gebruik de pill om keywoorden (filters of tags) te visualiseren.
  *
  * @extends HTMLElement
- * @mixin vlPillElement
  *
  * @property {boolean} closable - Attribuut bepaalt of de pill kan worden verwijderd (kan niet in combinatie met checkable gebruikt worden).
  * @property {boolean} checkable - Attribuut bepaalt of de pill kan worden aangevinkt (kan niet in combinatie met closable gebruikt worden).
