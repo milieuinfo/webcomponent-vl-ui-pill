@@ -53,6 +53,6 @@
     "@govflanders/vl-ui-core": "3.9.1",
     "@govflanders/vl-ui-pill": "3.9.1",
     "@govflanders/vl-ui-util": "3.9.2",
-    "vl-ui-util": "^5.2.0"
+    "vl-ui-util": "^5.2.3"
   }
 }
