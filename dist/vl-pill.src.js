@@ -1,4 +1,4 @@
-import {vlElement, nativeVlElement, define} from vl-ui-core;
+import {vlElement, nativeVlElement, define} from 'vl-ui-core';
 
 /**
  * VlPillElement

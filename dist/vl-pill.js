@@ -74,7 +74,7 @@ export class VlPill extends vlPillElement(HTMLElement) {
   constructor() {
     super(`
       <style>
-          @import /node_modules/vl-ui-pill/dist/style.css;
+          @import '/node_modules/vl-ui-pill/dist/style.css';
       </style>
       ${VlPill._standardPillTemplate}
     `);
