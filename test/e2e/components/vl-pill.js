@@ -4,7 +4,7 @@ const {By} = require('vl-ui-core').Test.Setup;
 
 class VlPillElement extends VlElement {
   async getType() {
-    return this.getAttribute('type');
+    return this.getAttribute('data-vl-type');
   }
 
   async isSuccess() {
@@ -22,11 +22,11 @@ class VlPillElement extends VlElement {
 
 class VlPill extends VlPillElement {
   async isClosable() {
-    return this.hasAttribute('closable');
+    return this.hasAttribute('data-vl-closable');
   }
 
   async isCheckable() {
-    return this.hasAttribute('checkable');
+    return this.hasAttribute('data-vl-checkable');
   }
 
   async isChecked() {

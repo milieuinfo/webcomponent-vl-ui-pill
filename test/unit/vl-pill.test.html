@@ -51,12 +51,12 @@
       should.not.exist(shadowRoot.querySelector('.vl-pill--closable'));
       should.not.exist(shadowRoot.querySelector('button'));
 
-      pill.setAttribute('closable', '');
+      pill.setAttribute('data-vl-closable', '');
       should.exist(pill._closeButton);
       assert.isTrue(pill._closeButton.classList.contains('vl-pill__close'));
       should.exist(shadowRoot.querySelector('.vl-pill--closable'));
 
-      pill.removeAttribute('closable');
+      pill.removeAttribute('data-vl-closable');
       should.not.exist(shadowRoot.querySelector('button'));
       should.not.exist(shadowRoot.querySelector('.vl-pill--closable'));
     });
@@ -64,7 +64,7 @@
     test('closable pill stuurt event uit wanneer er op de close knop gedrukt wordt', (done) => {
       const pill = fixture('vl-pill-fixture');
 
-      pill.setAttribute('closable', '');
+      pill.setAttribute('data-vl-closable', '');
       pill.addEventListener(VlPill.EVENTS.close, (event) => {
         event.composed.should.be.false;
         event.bubbles.should.be.false;
@@ -80,13 +80,13 @@
 
       should.not.exist(shadowRoot.querySelector('.vl-pill--checkable'));
 
-      pill.setAttribute('checkable', '');
+      pill.setAttribute('data-vl-checkable', '');
       const checkbox = pill._checkbox;
       assert.isTrue(checkbox.getAttribute('type') === 'checkbox');
       assert.isTrue(checkbox.classList.contains('vl-pill--checkable__checkbox'));
       should.exist(shadowRoot.querySelector('.vl-pill--checkable'));
 
-      pill.removeAttribute('checkable');
+      pill.removeAttribute('data-vl-checkable');
       should.not.exist(pill._checkbox);
       should.not.exist(shadowRoot.querySelector('.vl-pill--checkable'));
     });
@@ -95,14 +95,14 @@
       const pill = fixture('vl-pill-fixture');
       const shadowRoot = pill.shadowRoot;
 
-      pill.setAttribute('checkable', '');
+      pill.setAttribute('data-vl-checkable', '');
       should.exist(shadowRoot.querySelector('span'));
     });
 
     test('checkable pill kan via "checked" uit- en aangevinkt worden', () => {
       const pill = fixture('vl-pill-fixture');
 
-      pill.setAttribute('checkable', '');
+      pill.setAttribute('data-vl-checkable', '');
       pill.checked.should.be.false;
 
       pill.checked = true;
@@ -115,7 +115,7 @@
     test('checkable pill kan via een klik op de pill uit- en aangevinkt worden', () => {
       const pill = fixture('vl-pill-fixture');
 
-      pill.setAttribute('checkable', '');
+      pill.setAttribute('data-vl-checkable', '');
       pill.checked.should.be.false;
 
       pill._checkbox.click();
@@ -159,7 +159,7 @@
       const pill = fixture('vl-pill-fixture');
       let expectedCheckedValue = true;
 
-      pill.setAttribute('checkable', '');
+      pill.setAttribute('data-vl-checkable', '');
       pill.addEventListener(VlPill.EVENTS.check, function(event) {
         event.composed.should.be.false;
         event.bubbles.should.be.false;
