@@ -52,6 +52,7 @@ export const VlPillElement = vlPillElement;
  * @classdesc Gebruik de pill om keywoorden (filters of tags) te visualiseren.
  *
  * @extends HTMLElement
+ * @mixes vlPillElement
  *
  * @property {boolean} data-vl-closable - Attribuut bepaalt of de pill kan worden verwijderd (kan niet in combinatie met checkable gebruikt worden).
  * @property {boolean} data-vl-checkable - Attribuut bepaalt of de pill kan worden aangevinkt (kan niet in combinatie met closable gebruikt worden).
