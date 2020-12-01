@@ -1,20 +1,21 @@
-const {assert, driver} = require('vl-ui-core').Test.Setup;
+const {assert, getDriver} = require('vl-ui-core').Test.Setup;
 const VlPillPage = require('./pages/vl-pill.page');
 
 describe('vl-pill', async () => {
-  const vlPillPage = new VlPillPage(driver);
+  let vlPillPage;
 
   before(() => {
+    vlPillPage = new VlPillPage(getDriver());
     return vlPillPage.load();
   });
 
-  it('Als gebruiker kan ik de inhoud van een pill zien', async () => {
+  it('als gebruiker kan ik de inhoud van een pill zien', async () => {
     const pill = await vlPillPage.getStandardPill();
     const content = await pill.getContentSlotNodes();
     await assert.equal(content[0].textContent.trim(), 'Optie 1');
   });
 
-  it('Als gebruiker kan ik pillen zien zonder type en succes, waarschuwing en fout pillen', async () => {
+  it('als gebruiker kan ik pillen zien zonder type en succes, waarschuwing en fout pillen', async () => {
     const pill = await vlPillPage.getStandardPill();
     await assert.eventually.isFalse(pill.isSuccess());
     await assert.eventually.isFalse(pill.isWarning());
@@ -36,7 +37,7 @@ describe('vl-pill', async () => {
     await assert.eventually.isTrue(errorPill.isError());
   });
 
-  it('Als gebruiker kan ik een closable pill sluiten', async () => {
+  it('als gebruiker kan ik een closable pill sluiten', async () => {
     const pill = await vlPillPage.getClosablePill();
 
     await assert.eventually.isTrue(pill.isClosable());
@@ -48,7 +49,7 @@ describe('vl-pill', async () => {
     await assert.eventually.equal(closeResult.getTextContent(), 'Er werd op de sluitknop gedrukt!');
   });
 
-  it('Als gebruiker kan ik een checkable pill aan- en uitvinken', async () => {
+  it('als gebruiker kan ik een checkable pill aan- en uitvinken', async () => {
     const pill = await vlPillPage.getCheckablePill();
 
     await assert.eventually.isFalse(pill.isClosable());
