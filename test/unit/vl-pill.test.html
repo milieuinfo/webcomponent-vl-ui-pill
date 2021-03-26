@@ -155,7 +155,18 @@
       testCheckEvent(done, (pill) => pill._checkbox.click());
     });
 
-    function testCheckEvent(done, toggleCheckFun) {
+    test('attributen zetten de juiste classes', () => {
+      const pill = fixture('vl-pill-fixture');
+      ['disabled'].forEach((attribute) => {
+        assert.isFalse(pill.classList.contains(`vl-pill--${attribute}`));
+        pill.setAttribute(`data-vl-${attribute}`, '');
+        assert.isTrue(pill.classList.contains(`vl-pill--${attribute}`));
+        pill.removeAttribute(`data-vl-${attribute}`);
+        assert.isFalse(pill.classList.contains(`vl-pill--${attribute}`));
+      });
+    });
+
+    const testCheckEvent = (done, toggleCheckFun) => {
       const pill = fixture('vl-pill-fixture');
       let expectedCheckedValue = true;
 
@@ -174,7 +185,7 @@
       });
 
       toggleCheckFun(pill);
-    }
+    };
   });
 </script>
 </body>
