@@ -158,11 +158,11 @@
     test('attributen zetten de juiste classes', () => {
       const pill = fixture('vl-pill-fixture');
       ['disabled'].forEach((attribute) => {
-        assert.isFalse(pill.classList.contains(`vl-pill--${attribute}`));
+        assert.isFalse(pill._element.classList.contains(`vl-pill--${attribute}`));
         pill.setAttribute(`data-vl-${attribute}`, '');
-        assert.isTrue(pill.classList.contains(`vl-pill--${attribute}`));
+        assert.isTrue(pill._element.classList.contains(`vl-pill--${attribute}`));
         pill.removeAttribute(`data-vl-${attribute}`);
-        assert.isFalse(pill.classList.contains(`vl-pill--${attribute}`));
+        assert.isFalse(pill._element.classList.contains(`vl-pill--${attribute}`));
       });
     });
 
