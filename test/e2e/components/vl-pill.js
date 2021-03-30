@@ -18,6 +18,10 @@ class VlPillElement extends VlElement {
   async isError() {
     return await this.getType() === 'error';
   }
+
+  async isDisabled() {
+    return await this.hasAttribute('disabled');
+  }
 }
 
 class VlPill extends VlPillElement {

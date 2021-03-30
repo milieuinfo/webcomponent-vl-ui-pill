@@ -7,6 +7,7 @@ import {vlElement, nativeVlElement, define} from '/node_modules/vl-ui-core/dist/
  *
  * @param {Object} SuperClass
  *
+ * @property {boolean} data-vl-disabled - Attribuut om aan te geven dat het pill element disabled is.
  * @property {(success | warning | error)} data-vl-type - Attribuut bepaalt de soort van pill: succes, probleem of fout.
  *
  * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/releases/latest|Release notes}
@@ -17,6 +18,10 @@ export const vlPillElement = (SuperClass) => {
   return class extends vlElement(SuperClass) {
     static get _observedAttributes() {
       return ['type'];
+    }
+
+    static get _observedChildClassAttributes() {
+      return ['disabled'];
     }
 
     get _classPrefix() {

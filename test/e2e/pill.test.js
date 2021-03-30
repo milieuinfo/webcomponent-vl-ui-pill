@@ -37,6 +37,13 @@ describe('vl-pill', async () => {
     await assert.eventually.isTrue(errorPill.isError());
   });
 
+  it('als gebruiker kan ik het verschil zien tussen een disabled en normaal pill element', async () => {
+    const pill = await vlPillPage.getStandardPill();
+    const disabledPill = await vlPillPage.getDisabledPill();
+    await assert.eventually.isFalse(pill.isDisabled());
+    await assert.eventually.isTrue(disabledPill.isDisabled());
+  });
+
   it('als gebruiker kan ik een closable pill sluiten', async () => {
     const pill = await vlPillPage.getClosablePill();
 

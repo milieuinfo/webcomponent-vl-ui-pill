@@ -30,6 +30,10 @@ class VlPillPage extends Page {
     return this._getPill('#pill-error');
   }
 
+  async getDisabledPill() {
+    return this._getPill('#pill-disabled');
+  }
+
   async getClosablePill() {
     return this._getPill('#pill-closable');
   }
