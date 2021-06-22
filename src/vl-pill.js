@@ -139,7 +139,7 @@ export class VlPill extends vlPillElement(HTMLElement) {
       <div class="vl-pill vl-pill--closable">
         <slot></slot>
         <button id="close" class="vl-pill__close" type="button">
-          <span class="vl-u-visually-hidden">Verwijderen</span>
+          <span class="vl-u-visually-hidden">Optie verwijderen</span>
         </button>
       </div>
     `;
