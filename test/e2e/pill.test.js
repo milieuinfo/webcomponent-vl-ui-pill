@@ -9,6 +9,10 @@ describe('vl-pill', async () => {
     return vlPillPage.load();
   });
 
+  it('WCAG', async () => {
+    await assert.eventually.isFalse(vlPillPage.hasWcagIssues());
+  });
+
   it('als gebruiker kan ik de inhoud van een pill zien', async () => {
     const pill = await vlPillPage.getStandardPill();
     const content = await pill.getContentSlotNodes();
